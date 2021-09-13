@@ -37,7 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api'
+    # 'django.contrib.sites',
+    'api',
+    # 'rest_framework',
+    # 'rest_framework.authtoken',
+    # 'rest_auth',
+    # 'allauth',
+    # 'allauth.account',
+    # 'rest_auth.registration',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +81,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# Using default db for now to build what is more important, the aplication itself
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -81,6 +89,17 @@ DATABASES = {
     }
 }
 
+# Too much problems for now, fix it later
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'mydatabase',
+#         'USER': 'mydatabaseuser',
+#         'PASSWORD': 'mypassword',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -119,3 +138,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# REST_FRAMEWORK = {
+#     # Use Django's standard `django.contrib.auth` permissions,
+#     # or allow read-only access for unauthenticated users.
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+#     ]
+# }
