@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
  
 
 class Author(models.Model):
-    name = models.CharField(max_length=20,)
+    name = models.CharField(max_length=20)
     image_url = models.URLField(null=False)
 
     def __str__(self):
