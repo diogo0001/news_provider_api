@@ -10,3 +10,4 @@ pytest-cov==2.10.1
 pytest-django==4.1.0
 django-allauth==0.42.0
 django-rest-auth==0.9.5
+Pillow==8.3.2

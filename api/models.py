@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Author(models.Model):
     name = models.CharField(max_length=20)
-    image_url = models.URLField(null=False)
+    photo = models.ImageField(null=False,upload_to='images')
 
     def __str__(self):
         return self.name
