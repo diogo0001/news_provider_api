@@ -1,3 +1,4 @@
+from django.db import models
 from rest_framework import  serializers
 from django.contrib.auth.models import User
 from .models import Author, Article
@@ -21,31 +22,23 @@ class AuthorSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
-            'photo'
+            'photo',
             ]
- 
-
-class ArticlePreviewSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Article
-        fields = [
-            'id',
-            'title', 
-            'category',
-            'slug',
-            'sumary'            
-            ] 
-
+            
+            
 class ArticleSerializer(serializers.ModelSerializer):
+    author = AuthorSerializer()
     class Meta:
         model = Article
         fields = [
             'id',
-            'title', 
-            'author_id',
-            'slug',
+            'author',
             'category',
+            'title',             
             'sumary',            
             'fist_paragraph',
             'body'
             ]
+
+
+ 

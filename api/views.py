@@ -1,12 +1,22 @@
-# from JungleDevsProject.JungleDevs.api import serializer
 from .models import Author
-# from JungleDevsProject.JungleDevs import api
-from rest_framework import viewsets, permissions, status
-from .serializer import UserSerializer, AuthorSerializer, ArticleSerializer, ArticlePreviewSerializer
+from rest_framework import  status
+from .serializer import AuthorSerializer, ArticleSerializer
 from .models import Author, Article
 from rest_framework.response import Response
-from rest_framework.decorators import action, api_view, permission_classes
-# from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view
+
+
+def get_filtered_data(serialized_data, fields):
+    output_data = [] 
+
+    for d in serialized_data:
+            data = {}
+            for field in fields:
+                if field in d:
+                    data[field] = d[field]
+            output_data.append(data)
+    
+    return output_data
 
 
 @api_view(['GET',])
@@ -29,8 +39,17 @@ def api_articles_view(request):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
-        serializer = ArticlePreviewSerializer(article, many=True)
-        return Response(serializer.data)
+        serializer = ArticleSerializer(article, many=True)
+        fields = [
+            'id',
+            'author',
+            'category',
+            'title',             
+            'sumary'
+            ]
+        
+        output_data = get_filtered_data(serializer.data, fields)            
+        return Response(output_data)
 
 
 @api_view(['GET',])
@@ -39,40 +58,24 @@ def api_article_slug_detail_view(request,slug):
         article = Article.objects.get(slug=slug)
     except Article.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    permission = False # test
 
     if request.method == 'GET':
         serializer = ArticleSerializer(article)
-        return Response(serializer.data)
+        fields = [
+            'id',
+            'author',
+            'category',
+            'title',             
+            'sumary',
+            'fist_paragraph'
+            ]
+
+        if permission:
+            fields.append('body')
+
+    output_data = get_filtered_data([serializer.data], fields)            
+    return Response(output_data)
 
 
-
-#################################################################
-# class UserViewSet(viewsets.ModelViewSet):
-#     queryset = models.User.objects.all()
-#     serializer_class = UserSerializer
-
-
-# class AuthorViewSet(viewsets.ModelViewSet):
-#     queryset = models.Author.objects.all()
-#     serializer_class = AuthorSerializer
-#     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
-
-#     def create(self, request):
-#         serializer = AuthorSerializer(
-#         data=request.data, context={'request': request})
-#         serializer.is_valid(raise_exception=True) # check all fields is valid before attempting to save
-#         serializer.save(user=request.user)
-#         return Response(serializer.data)
-
-
-# class ArticleViewSet(viewsets.ModelViewSet):
-#     queryset = models.Article.objects.all()
-#     serializer_class = ArticleSerializer
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def create(self, request):
-#         serializer = ArticleSerializer(
-#         data=request.data, context={'request': request})
-#         serializer.is_valid(raise_exception=True) # check all fields is valid before attempting to save
-#         serializer.save(user=request.user)
-#         return Response(serializer.data)
