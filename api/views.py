@@ -79,6 +79,7 @@ def api_article_slug_detail_view(request,slug):
             'fist_paragraph'
             ]
 
+        # If user is logged, show the content body
         if request.user.is_authenticated:
             print("USER ALLOWED")
             fields.append('body')
