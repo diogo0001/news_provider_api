@@ -25,10 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('rest_auth.urls')),
     path('api/',include('api.urls','api')),
-    path('api/accounts/',include('django.contrib.auth.urls')),
-
-    # path('api/sign-up/', include('rest_auth.registration.urls')),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# if settings.DEBUG:
+#     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
