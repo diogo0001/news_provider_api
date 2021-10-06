@@ -1,12 +1,6 @@
 # Articles provider API
 
-<<<<<<< HEAD
-This project is a basic implementation of an api that provides the articles and their data stored by an admin in the system.<br><br>
-This is in the development environment only, and needs to be run by Django runserver.<br><br>
-Note: albeidt the project is functional, it's incomplete, and it's still in development.
-=======
 This project is a basic implementation of an api that provides the articles and their data stored by an admin in the system.
->>>>>>> master
 
 ### Admin user
 
