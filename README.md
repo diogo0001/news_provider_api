@@ -1,8 +1,12 @@
 # Articles provider API
 
+<<<<<<< HEAD
 This project is a basic implementation of an api that provides the articles and their data stored by an admin in the system.<br><br>
 This is in the development environment only, and needs to be run by Django runserver.<br><br>
 Note: albeidt the project is functional, it's incomplete, and it's still in development.
+=======
+This project is a basic implementation of an api that provides the articles and their data stored by an admin in the system.
+>>>>>>> master
 
 ### Admin user
 
@@ -16,7 +20,7 @@ Can see the full content if logged, or just the header if Anonymous.
 
 - Login API: `/api/login/`
 - Sign-up API: `/api/sign-up/`
-- Administrator restricted APIs (it's in default django admin page, the serialization needs to be implemented):
+- Administrator restricted APIs:
   - CRUD `/api/admin/authors/`  
   - CRUD `/api/admin/articles/`
 - List article endpoint `/api/articles/` with the following response:
